@@ -37,6 +37,10 @@ BlueMP.prototype = {
 
     authorize_url: 'http://www.bluemp.cn/Auth/Authorize/index',
 
+    authorize_prefix: 'http://www.bluemp.cn/Auth/Authorize/',
+
+    default_format: '',
+
     /**
      * When authorize successfully, make request to this endpoint to get access token
      */
@@ -129,17 +133,37 @@ BlueMP.prototype = {
         }
 
         this._makeRequest(this.access_token_endpoint, 'POST', parameters, function(result) {
-            if (result) {
-
-            } else {
-                callback(null);
-            }
+            callback(result);
         });
     },
 
+    /**
+     * Get enterprise information via access token
+     * 
+     * @name getEnterpriseInfo
+     * @param {String} accessToken - The access token
+     * @param {Function} callback - The callback when success
+     * 
+     * @returns {void}
+     */
+    getEnterpriseInfo: function(accessToken, callback) {
+        accessToken = accessToken || this.accessToken;
+        this._makeRequest('getEnterpriseInfo', 'GET', {
+            access_token: accessToken
+        }, function(result) {
+            callback(result);
+        });
+    },
+
+    
     _makeRequest: function(endpoint, method, params, callback) {
         if (!endpoint) 
             throw new Error('Please specify request endpoint.');
+        
+        if (!endpoint.startsWith("https://") && !endpoint.startsWith("http://")) {
+            endpoint = this.authorize_prefix + endpoint + this.default_format;
+        }
+
         method = method || 'GET';
 
         switch(method) {
@@ -160,6 +184,10 @@ BlueMP.prototype = {
             }
         };
 
+        if (params.access_token || this.access_token) {
+            requestOptions.headers.Authorization = "OAuth2 " + (params.access_token || this.access_token);
+        }
+
         if (method === 'POST') {
             requestOptions.form = params;
         }
@@ -168,7 +196,14 @@ BlueMP.prototype = {
             if (!error && response.statusCode == 200) {
                 callback(JSON.parse(body));
             } else {
-                callback(null);
+                if (error) {
+                    callback({error: error.message});
+                } else if (body) {
+                    var result = JSON.parse(body);
+                    callback(result);
+                } else {
+                    callback({error: 'Unknown error'});
+                }
             }
         });
     }
