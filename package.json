@@ -1,0 +1,25 @@
+{
+  "name": "bluemp",
+  "version": "0.1.0",
+  "description": "This is the NodeJS sdk for BlueMP marketing open platform.",
+  "main": "src/bluemp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foogao/bluemp.git"
+  },
+  "keywords": [
+    "bluemp"
+  ],
+  "author": "Steve Gao <steve@parllay.cn>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foogao/bluemp/issues"
+  },
+  "homepage": "https://github.com/foogao/bluemp#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
