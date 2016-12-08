@@ -1,6 +1,8 @@
 BlueMP NodeJS SDK
 =================
 
+[![Build Status](https://travis-ci.org/foogao/bluemp.svg?branch=master)](https://travis-ci.org/foogao/bluemp)
+
 This is an unofficial NodeJS SDK implementation for BlueMP open platform.
 
 This SDK is inspired by BlueMP official PHP SDK.
