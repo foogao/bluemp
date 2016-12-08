@@ -64,4 +64,4 @@ mp_client.getEnterpriseInfo('xxxxx', function(result) {
 
 ```
 
-If you want detailed help information please visit [BlueMP](http://open.bluemp.cn/)
+If you want detailed help information, please visit [BlueMP](http://open.bluemp.cn/)
