@@ -1,6 +1,6 @@
 {
   "name": "bluemp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This is the NodeJS sdk for BlueMP marketing open platform.",
   "main": "src/bluemp.js",
   "scripts": {
