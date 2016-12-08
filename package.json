@@ -4,7 +4,7 @@
   "description": "This is the NodeJS sdk for BlueMP marketing open platform.",
   "main": "src/bluemp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Don't have test for this sdk\" && exit 0"
   },
   "repository": {
     "type": "git",
